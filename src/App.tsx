@@ -1,6 +1,29 @@
 import React, { useState } from 'react';
 import './App.css';
 
+const FloatingCharacters: React.FC = () => {
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()'.split('');
+
+  return (
+    <div className="floating-characters">
+      {characters.map((char, index) => (
+        <span
+          className="floating-char"
+          key={index}
+          style={{
+            animationDelay: `${Math.random() * 5}s`,
+            left: `${Math.random() * 100}vw`,
+            top: `${Math.random() * 100}vh`,
+            fontSize: `${Math.random() * 3 + 1}rem`, // Random font size
+          }}
+        >
+          {char}
+        </span>
+      ))}
+    </div>
+  );
+};
+
 const App: React.FC = () => {
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
@@ -43,6 +66,8 @@ const App: React.FC = () => {
           <button type="submit">Enter</button>
         </form>
       )}
+      {/* Add floating characters */}
+      <FloatingCharacters />
     </div>
   );
 };
